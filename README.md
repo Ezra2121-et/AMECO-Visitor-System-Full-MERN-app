@@ -20,13 +20,13 @@ This repository contains the React frontend and Express/MongoDB API. It is an in
 
 ## Repository layout
 
-- \`src/pages/\` — login, dashboards, visitor workflows, reports and settings.
-- \`src/components/\` — navigation, sidebar and protected-route components.
-- \`src/services/api.js\` — API client and bearer-token handling.
-- \`backend/routes/\` — authentication, users, visitors, sources, logs and settings endpoints.
-- \`backend/controllers/\` — request handlers and business logic.
-- \`backend/models/\` — MongoDB/Mongoose models.
-- \`backend/middleware/\` — authentication and role checks.
+- `src/pages/` — login, dashboards, visitor workflows, reports and settings.
+- `src/components/` — navigation, sidebar and protected-route components.
+- `src/services/api.js` — API client and bearer-token handling.
+- `backend/routes/` — authentication, users, visitors, sources, logs and settings endpoints.
+- `backend/controllers/` — request handlers and business logic.
+- `backend/models/` — MongoDB/Mongoose models.
+- `backend/middleware/` — authentication and role checks.
 
 ## Requirements
 
@@ -38,64 +38,76 @@ This repository contains the React frontend and Express/MongoDB API. It is an in
 
 ### 1. Configure the backend
 
-\`\`\`bash
+```bash
 cd backend
 npm install
-\`\`\`
+```
 
-Create \`backend/.env\` with values for your local environment:
+Copy the backend environment example and edit the placeholders:
 
-\`\`\`dotenv
+```bash
+cp .env.example .env
+```
+
+Use these values for local development:
+
+```dotenv
 MONGO_URI=mongodb://127.0.0.1:27017/ameco_visitors
 JWT_SECRET=replace-with-a-long-random-secret
 JWT_EXPIRES_IN=7d
 PORT=5000
 CORS_ORIGIN=http://localhost:5173
-\`\`\`
+```
 
 Make sure MongoDB is running. For a local development database, initialize the demo accounts from the backend directory:
 
-\`\`\`bash
+```bash
 npm run seed
 npm run dev
-\`\`\`
+```
 
-The seed script currently contains predefined development-only demo accounts. Inspect \`backend/seed.js\` for details. **Do not use those credentials in a public deployment**; replace the defaults and use a unique, strong \`JWT_SECRET\` before exposing the application.
+The seed script currently contains predefined development-only demo accounts. Inspect `backend/seed.js` for details. **Do not use those credentials in a public deployment**; replace the defaults and use a unique, strong `JWT_SECRET` before exposing the application.
 
-The API root is available at \`http://localhost:5000/\`.
+The API root is available at `http://localhost:5000/`.
 
 ### 2. Configure the frontend
 
 In a second terminal, from the repository root:
 
-\`\`\`bash
+```bash
 npm install
-\`\`\`
+```
 
-Create a root-level \`.env\` file:
+Copy the frontend environment example from the repository root and edit it if needed:
 
-\`\`\`dotenv
+```bash
+cp .env.example .env
+```
+
+The root-level `.env` should contain:
+
+```dotenv
 VITE_API_BASE_URL=http://localhost:5000/api
-\`\`\`
+```
 
 Start the frontend:
 
-\`\`\`bash
+```bash
 npm run dev
-\`\`\`
+```
 
-Open the local URL printed by Vite, normally \`http://localhost:5173\`.
+Open the local URL printed by Vite, normally `http://localhost:5173`.
 
 ## Build and lint
 
 From the repository root:
 
-\`\`\`bash
+```bash
 npm run build
 npm run lint
-\`\`\`
+```
 
-For the backend, \`npm run dev\` starts the API using Nodemon; \`npm start\` starts it with Node.js.
+For the backend, `npm run dev` starts the API using Nodemon; `npm start` starts it with Node.js.
 
 ## Current scope and production considerations
 
